@@ -4,6 +4,7 @@ import "./App.style.scss";
 
 import Header from "../Header/Header.component";
 import MenuContainer from "../Menu/Menu.container";
+import PostListContainer from "../PostList/PostList.container";
 
 class App extends Component {
   render() {
@@ -14,6 +15,9 @@ class App extends Component {
           <div className="columns">
             <div className="column is-3">
               <MenuContainer />
+            </div>
+            <div className="column is-9">
+              <PostListContainer />
             </div>
           </div>
         </main>
