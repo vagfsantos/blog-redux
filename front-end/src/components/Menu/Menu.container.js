@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Menu from "./Menu.component";
-import { getCategories } from "./Menu.actions";
+import { actionFetchCategories } from "./Menu.actions";
 
 class MenuContainer extends Component {
   async componentDidMount() {
-    this.props.dispatch(getCategories());
+    this.props.dispatch(actionFetchCategories());
   }
 
   render() {
@@ -15,7 +15,6 @@ class MenuContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     categories: state.categories
   };

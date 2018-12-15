@@ -1,13 +1,13 @@
-export const GET_CATEGORIES = "GET_CATEGORIES";
+export const FETCH_CATEGORIES = "GET_CATEGORIES";
 export const SET_CATEGORIES = "SET_CATEGORIES";
 
-export const getCategories = () => {
+export const actionFetchCategories = () => {
   return {
-    type: GET_CATEGORIES
+    type: FETCH_CATEGORIES
   };
 };
 
-export const setCategories = categories => {
+export const actionSetCategories = categories => {
   return {
     type: SET_CATEGORIES,
     payload: categories
