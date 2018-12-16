@@ -2,12 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import PostCardContainer from "../PostCard/PostCard.container";
+import FiltersContainer from "../Filters/Filters.container";
 
 const PostList = ({ postIds, category }) => (
   <div>
     <h2 className="has-text-centered title is-2 is-uppercase" data-test="title">
       {category ? category : "All posts"}
     </h2>
+    <br />
+    <div>
+      <FiltersContainer />
+    </div>
     <br />
     {postIds.length > 0 ? (
       <ul className="columns is-multiline">
