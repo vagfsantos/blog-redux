@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount, render } from "enzyme";
+import { shallow } from "enzyme";
 
 import Menu from "./Menu.component";
 
@@ -10,14 +10,14 @@ const CATEGORIES = [
 
 describe("<Menu />", () => {
   it("renders a list of categories", () => {
-    const menu = mount(<Menu categories={CATEGORIES} />);
+    const menu = shallow(<Menu categories={CATEGORIES} />);
 
     expect(menu.find("li")).toHaveLength(2);
   });
 
   describe("when given an empty array list", () => {
     it("renders no list items", () => {
-      const menu = mount(<Menu categories={[]} />);
+      const menu = shallow(<Menu categories={[]} />);
 
       expect(menu.find("li")).toHaveLength(0);
     });

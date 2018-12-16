@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
 const Menu = ({ categories }) => (
   <aside className="menu">
@@ -7,7 +8,9 @@ const Menu = ({ categories }) => (
     <ul className="menu-list">
       {categories.map(category => (
         <li key={category.name}>
-          <a href={category.path}>{category.name}</a>
+          <NavLink to={`/${category.path}`} className="is-uppercase is-size-7">
+            {category.name}
+          </NavLink>
         </li>
       ))}
     </ul>
