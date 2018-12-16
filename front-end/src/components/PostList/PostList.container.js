@@ -20,8 +20,28 @@ const mapStateToProps = (state, ownProps) => {
     ? state.posts.filter(post => post.category === ownProps.category)
     : state.posts;
 
+  let sortedPosts = [];
+
+  if (state.filters.votes) {
+    sortedPosts = postsToBeRendered.sort((a, b) => {
+      if (state.filters.votes === "DESC") {
+        return b.voteScore - a.voteScore;
+      }
+      return a.voteScore - b.voteScore;
+    });
+  }
+
+  if (state.filters.date) {
+    sortedPosts = postsToBeRendered.sort((a, b) => {
+      if (state.filters.date === "DESC") {
+        return b.timestamp - a.timestamp;
+      }
+      return a.timestamp - b.timestamp;
+    });
+  }
+
   return {
-    postIds: postsToBeRendered.map(post => post.id)
+    postIds: sortedPosts.map(post => post.id)
   };
 };
 
