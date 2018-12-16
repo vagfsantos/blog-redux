@@ -1,27 +1,40 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import "./App.style.scss";
 
-import Header from "../Header/Header.component";
-import MenuContainer from "../Menu/Menu.container";
+import "./App.style.scss";
 import PostListContainer from "../PostList/PostList.container";
+import BaseLayout from "../BaseLayout/BaseLayout.component";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        <main className="container is-fluid">
-          <div className="columns">
-            <div className="column is-3">
-              <MenuContainer />
-            </div>
-            <div className="column is-9">
-              <PostListContainer />
-            </div>
-          </div>
-        </main>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return (
+                <BaseLayout>
+                  <PostListContainer />
+                </BaseLayout>
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/:category"
+            render={({ match }) => {
+              return (
+                <BaseLayout>
+                  <PostListContainer category={match.params.category} />
+                </BaseLayout>
+              );
+            }}
+          />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

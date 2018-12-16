@@ -10,14 +10,18 @@ class PostListContainer extends Component {
   }
 
   render() {
-    const { postIds } = this.props;
-    return <PostList postIds={postIds} />;
+    const { postIds, category } = this.props;
+    return <PostList postIds={postIds} category={category} />;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const postsToBeRendered = ownProps.category
+    ? state.posts.filter(post => post.category === ownProps.category)
+    : state.posts;
+
   return {
-    postIds: state.posts.map(post => post.id)
+    postIds: postsToBeRendered.map(post => post.id)
   };
 };
 
