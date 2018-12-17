@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { actionFilterByDate, actionFilterByVote } from "./Filters.actions";
 import Filters from "./Filters.component";
+import { actionFilterByDate, actionFilterByVote } from "./Filters.actions";
+import { FILTER_TYPES } from "./Filters.enum";
 
 class FiltersContainer extends Component {
   render() {
@@ -13,11 +14,13 @@ class FiltersContainer extends Component {
 
 const mapDispatchToProps = dispatch => ({
   filterPostsBy: (filterBy, filter) => {
-    if (filterBy === "date") {
+    if (filterBy === FILTER_TYPES.DATE) {
       return dispatch(actionFilterByDate(filter));
     }
 
-    return dispatch(actionFilterByVote(filter));
+    if (filterBy === FILTER_TYPES.VOTES) {
+      return dispatch(actionFilterByVote(filter));
+    }
   }
 });
 

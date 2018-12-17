@@ -27,7 +27,7 @@ const PostList = ({ postIds, category }) => (
         className="has-text-centered subtitle is-6"
         data-test="no-post-message"
       >
-        There is not any post on this category
+        There is no posts on this category
       </h4>
     )}
   </div>

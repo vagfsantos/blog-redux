@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import PostList from "./PostList.component";
 import { actionFetchAllPosts } from "./PostList.actions";
+import { ORDER_BY, FILTER_TYPES } from "../Filters/Filters.enum";
 
 class PostListContainer extends Component {
   componentDidMount() {
@@ -22,18 +23,18 @@ const mapStateToProps = (state, ownProps) => {
 
   let sortedPosts = [];
 
-  if (state.filters.votes) {
+  if (state.filters[FILTER_TYPES.VOTES]) {
     sortedPosts = postsToBeRendered.sort((a, b) => {
-      if (state.filters.votes === "DESC") {
+      if (state.filters[FILTER_TYPES.VOTES] === ORDER_BY.DESC) {
         return b.voteScore - a.voteScore;
       }
       return a.voteScore - b.voteScore;
     });
   }
 
-  if (state.filters.date) {
+  if (state.filters[FILTER_TYPES.DATE]) {
     sortedPosts = postsToBeRendered.sort((a, b) => {
-      if (state.filters.date === "DESC") {
+      if (state.filters[FILTER_TYPES.DATE] === ORDER_BY.DESC) {
         return b.timestamp - a.timestamp;
       }
       return a.timestamp - b.timestamp;

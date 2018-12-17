@@ -1,23 +1,26 @@
 import { FILTER_BY_DATE, FILTER_BY_VOTE } from "./Filters.actions";
+import { ORDER_BY, FILTER_TYPES } from "./Filters.enum";
+
+const { DATE, VOTES } = FILTER_TYPES;
 
 export const FiltersReducer = (prevState = {}, action) => {
   switch (action.type) {
     case FILTER_BY_DATE:
       return {
         ...prevState,
-        votes: null,
-        date: action.payload
+        [VOTES]: null,
+        [DATE]: action.payload
       };
     case FILTER_BY_VOTE:
       return {
         ...prevState,
-        votes: action.payload,
-        date: null
+        [VOTES]: action.payload,
+        [DATE]: null
       };
     default:
       return {
-        votes: "DESC",
-        date: null
+        [VOTES]: ORDER_BY.DESC,
+        [DATE]: null
       };
   }
 };

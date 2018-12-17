@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { ORDER_BY, FILTER_TYPES } from "./Filters.enum";
 
-const DESC = "DESC";
-const ASC = "ASC";
+const { DESC, ASC } = ORDER_BY;
+const { DATE, VOTES } = FILTER_TYPES;
 
 class Filters extends Component {
   static propTypes = {
@@ -14,8 +15,8 @@ class Filters extends Component {
   };
 
   state = {
-    date: DESC,
-    votes: DESC
+    [DATE]: DESC,
+    [VOTES]: DESC
   };
 
   handleToggle(event, prop) {
@@ -32,23 +33,24 @@ class Filters extends Component {
   }
 
   render() {
-    const { date, votes } = this.state;
-
     const dateIcon =
-      date === DESC ? "fa-sort-amount-up" : "fa-sort-amount-down";
+      this.state[DATE] === DESC ? "fa-sort-amount-up" : "fa-sort-amount-down";
     const voteIcon =
-      votes === DESC ? "fa-sort-numeric-up" : "fa-sort-numeric-down";
+      this.state[VOTES] === DESC
+        ? "fa-sort-numeric-up"
+        : "fa-sort-numeric-down";
 
     return (
       <div>
         <div className="is-pulled-right">
-          <a onClick={event => this.handleToggle(event, "votes")}>
+          Filter
+          <a onClick={event => this.handleToggle(event, VOTES)}>
             <span className="icon is-large">
               <i className={`fas fa-lg ${voteIcon}`} />
             </span>
             by vote
           </a>
-          <a onClick={event => this.handleToggle(event, "date")}>
+          <a onClick={event => this.handleToggle(event, DATE)}>
             <span className="icon is-large">
               <i className={`fas fa-lg ${dateIcon}`} />
             </span>
