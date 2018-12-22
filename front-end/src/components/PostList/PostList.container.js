@@ -5,6 +5,9 @@ import PostList from "./PostList.component";
 import { actionFetchAllPosts } from "./PostList.actions";
 import { ORDER_BY, FILTER_TYPES } from "../Filters/Filters.enum";
 
+const { VOTES, DATE } = FILTER_TYPES;
+const { DESC } = ORDER_BY;
+
 class PostListContainer extends Component {
   componentDidMount() {
     this.props.dispatch(actionFetchAllPosts());
@@ -16,25 +19,25 @@ class PostListContainer extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const postsToBeRendered = ownProps.category
-    ? state.posts.filter(post => post.category === ownProps.category)
-    : state.posts;
+export const mapStateToProps = ({ posts, filters }, { category }) => {
+  const postsToBeRendered = category
+    ? posts.filter(post => post.category === category)
+    : posts;
 
-  let sortedPosts = [];
+  let sortedPosts = postsToBeRendered;
 
-  if (state.filters[FILTER_TYPES.VOTES]) {
+  if (filters[VOTES]) {
     sortedPosts = postsToBeRendered.sort((a, b) => {
-      if (state.filters[FILTER_TYPES.VOTES] === ORDER_BY.DESC) {
+      if (filters[VOTES] === DESC) {
         return b.voteScore - a.voteScore;
       }
       return a.voteScore - b.voteScore;
     });
   }
 
-  if (state.filters[FILTER_TYPES.DATE]) {
+  if (filters[DATE]) {
     sortedPosts = postsToBeRendered.sort((a, b) => {
-      if (state.filters[FILTER_TYPES.DATE] === ORDER_BY.DESC) {
+      if (filters[DATE] === DESC) {
         return b.timestamp - a.timestamp;
       }
       return a.timestamp - b.timestamp;
