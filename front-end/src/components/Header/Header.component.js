@@ -9,6 +9,18 @@ export default () => (
           Readable
         </Link>
       </div>
+      <div className="navbar-end">
+        <div className="navbar-item">
+          <div className="buttons">
+            <Link to="/post/new" className="button is-success">
+              <span className="icon">
+                <i class="fas fa-plus-square" />
+              </span>
+              <span>Add new post</span>
+            </Link>
+          </div>
+        </div>
+      </div>
     </nav>
   </header>
 );
