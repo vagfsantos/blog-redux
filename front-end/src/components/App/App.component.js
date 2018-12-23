@@ -6,6 +6,7 @@ import "./App.style.scss";
 import PostListContainer from "../PostList/PostList.container";
 import BaseLayout from "../BaseLayout/BaseLayout.component";
 import NewPostContainer from "../NewPost/NewPost.container";
+import PostContentContainer from "../PostContent/PostContent.container";
 
 class App extends Component {
   render() {
@@ -41,6 +42,17 @@ class App extends Component {
               return (
                 <BaseLayout>
                   <NewPostContainer />
+                </BaseLayout>
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/:category/post/:id"
+            render={({ match }) => {
+              return (
+                <BaseLayout>
+                  <PostContentContainer postId={match.params.id} />
                 </BaseLayout>
               );
             }}

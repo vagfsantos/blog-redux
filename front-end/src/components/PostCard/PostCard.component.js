@@ -1,70 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
+import PostMetaData from "../PostMetaData/PostMetaData.component";
+import Score from "../Score/Score.component";
+import VoteContainer from "../Vote/Vote.container";
 
 const PostCard = ({ post }) => {
-  const date = new Date(post.timestamp);
-
   return (
     <div className="box">
       <header className="columns">
         <div className="column is-9">
           <h2 className="title is-4">{post.title}</h2>
           <span className="tag is-warning">{post.category}</span>{" "}
-          <a href="#">
+          <Link to={`/${post.category}/post/${post.id}`}>
             <span className="icon">
               <i className="fas fa-book-reader" />
             </span>
             Learn more
-          </a>
+          </Link>
         </div>
         <div className="column">
-          <p className="is-size-7">
-            <span>Published at </span>
-            <time dateTime={date.toLocaleDateString()}>
-              {date.toLocaleDateString()}
-            </time>
-          </p>
-          <p className="is-size-7">
-            by <b>{post.author}</b>
-            <a href="#">
-              <span className="icon">
-                <i className="fas fa-edit" />
-              </span>
-              edit
-            </a>
-          </p>
+          <PostMetaData
+            author={post.author}
+            timestamp={post.timestamp}
+            postId={post.id}
+          />
         </div>
       </header>
       <footer className="columns">
         <div className="column is-10">
-          <span>
-            <span className="icon">
-              <i className="fas fa-comments" />
-            </span>
-            <span className="is-size-7">{post.commentCount}</span>
-          </span>
-          <span className="has-text-danger">
-            <span className="icon">
-              <i
-                className={`fas ${
-                  post.voteScore > 0 ? "fa-grin-hearts" : "fa-sad-tear"
-                }`}
-              />
-            </span>
-            <span className="is-size-7">{post.voteScore}</span>
-          </span>
+          <Score voteScore={post.voteScore} commentCount={post.commentCount} />
         </div>
         <div className="column is-2">
-          <button href="#">
-            <span className="icon">
-              <i className="fas fa-thumbs-up" />
-            </span>
-          </button>
-          <button>
-            <span className="icon">
-              <i className="fas fa-thumbs-down" />
-            </span>
-          </button>
+          <VoteContainer postId={post.id} />
         </div>
       </footer>
     </div>
