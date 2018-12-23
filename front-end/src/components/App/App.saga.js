@@ -1,6 +1,6 @@
 import { put, takeEvery, call } from "redux-saga/effects";
 
-import { FETCH_ALL_POSTS, actionSetAllPosts } from "./PostList.actions";
+import { FETCH_ALL_POSTS, actionSetAllPosts } from "./App.actions";
 import { fetchAllPosts } from "../../api/posts.api";
 
 export function* watchGetAllPosts() {

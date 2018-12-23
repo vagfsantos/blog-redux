@@ -2,17 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import PostList from "./PostList.component";
-import { actionFetchAllPosts } from "./PostList.actions";
 import { ORDER_BY, FILTER_TYPES } from "../Filters/Filters.enum";
 
 const { VOTES, DATE } = FILTER_TYPES;
 const { DESC } = ORDER_BY;
 
 class PostListContainer extends Component {
-  componentDidMount() {
-    this.props.dispatch(actionFetchAllPosts());
-  }
-
   render() {
     const { postIds, category } = this.props;
     return <PostList postIds={postIds} category={category} />;

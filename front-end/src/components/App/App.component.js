@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
 
 import "./App.style.scss";
 import PostListContainer from "../PostList/PostList.container";
@@ -74,4 +73,4 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+export default App;

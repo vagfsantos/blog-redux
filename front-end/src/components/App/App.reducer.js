@@ -1,4 +1,4 @@
-import { SET_ALL_POSTS } from "./PostList.actions";
+import { SET_ALL_POSTS } from "./App.actions";
 
 export const PostListReducer = (prevState = [], action) => {
   switch (action.type) {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { actionAddNewPost } from "./NewPost.actions";
+import { actionAddNewPost, actionEditPost } from "./NewPost.actions";
 import NewPost from "./NewPost.component";
 
 class NewPostContainer extends Component {
@@ -27,7 +27,10 @@ const mapStateToProps = ({ categories, posts }, { postId }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSavePost(post) {
+    onSavePost(post, isEditing) {
+      if (isEditing) {
+        return dispatch(actionEditPost(post));
+      }
       return dispatch(actionAddNewPost(post));
     }
   };

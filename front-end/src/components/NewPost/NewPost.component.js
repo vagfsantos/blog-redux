@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import uuid from "uuid/v1";
 import { Link, Redirect } from "react-router-dom";
 
-class NewPost extends Component {
+class NewPost extends PureComponent {
   static propTypes = {
     onSavePost: PropTypes.func.isRequired,
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -29,7 +29,7 @@ class NewPost extends Component {
     isEditing: false
   };
 
-  componentDidMount() {
+  componentDidUpdate() {
     if (this.props.post) {
       this.enableEditingMode();
     }
@@ -39,17 +39,7 @@ class NewPost extends Component {
     const { post } = this.props;
 
     this.setState({
-      post: {
-        id: post.id || "",
-        title: post.title || "",
-        author: post.author || "",
-        body: post.body || "",
-        category: post.category || "",
-        timestamp: post.timestamp || "",
-        commentCount: post.commentCount || 0,
-        voteScore: post.voteScore || 0,
-        deleted: post.deleted || false
-      },
+      post,
       isEditing: true
     });
   }
@@ -95,7 +85,7 @@ class NewPost extends Component {
         };
       },
       () => {
-        this.props.onSavePost(this.state.post);
+        this.props.onSavePost(this.state.post, this.state.isEditing);
         this.setState({ isPosting: false, isSaved: true });
       }
     );
