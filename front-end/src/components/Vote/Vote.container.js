@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import Vote from "./Vote.component";
 
-class VotesContainer extends Component {
+class VoteContainer extends Component {
   static propTypes = {
     postId: PropTypes.string.isRequired
   };
@@ -27,4 +27,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(VotesContainer);
+)(VoteContainer);
