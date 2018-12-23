@@ -16,9 +16,9 @@ export const actionDeleteAddedNewPost = post => {
   };
 };
 
-export const actionSuccessfullySavedNewPost = (id, complementInfo) => {
+export const actionSuccessfullySavedNewPost = (id, post) => {
   return {
     type: SUCCESSFULLY_SAVED_NEW_POST,
-    payload: { id, complementInfo }
+    payload: { id, post }
   };
 };

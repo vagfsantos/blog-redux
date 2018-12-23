@@ -17,7 +17,7 @@ export const NewPostReducer = (state = [], action) => {
         if (post.id === action.payload.id) {
           return {
             ...post,
-            ...action.payload.complementInfo
+            ...action.payload.post
           };
         }
 

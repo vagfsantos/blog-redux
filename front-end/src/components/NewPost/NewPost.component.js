@@ -16,7 +16,10 @@ class NewPost extends Component {
       author: "",
       body: "",
       category: "",
-      timestamp: ""
+      timestamp: "",
+      commentCount: 0,
+      voteScore: 0,
+      deleted: false
     },
 
     isReadyToSubmit: false,
