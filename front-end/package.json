@@ -12,7 +12,8 @@
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
     "redux-saga": "^0.16.2",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "reduce-reducers": "^0.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
