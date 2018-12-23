@@ -5,3 +5,11 @@ export const fetchAllPosts = () => {
     response.json()
   );
 };
+
+export const saveNewPost = post => {
+  return fetch(`${API_HOST}/posts`, {
+    headers,
+    method: "POST",
+    body: JSON.stringify(post)
+  }).then(response => response.json());
+};
