@@ -7,5 +7,6 @@ if (!token) token = localStorage.token = uuid();
 
 export const headers = {
   Authorization: token,
+  "Content-Type": "application/json",
   Accept: "application/json"
 };
