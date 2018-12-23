@@ -48,6 +48,17 @@ class App extends Component {
           />
           <Route
             exact
+            path="/post/new/:id"
+            render={({ match }) => {
+              return (
+                <BaseLayout>
+                  <NewPostContainer postId={match.params.id} />
+                </BaseLayout>
+              );
+            }}
+          />
+          <Route
+            exact
             path="/:category/post/:id"
             render={({ match }) => {
               return (

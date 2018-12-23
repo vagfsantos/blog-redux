@@ -6,7 +6,8 @@ import { Link, Redirect } from "react-router-dom";
 class NewPost extends Component {
   static propTypes = {
     onSavePost: PropTypes.func.isRequired,
-    categories: PropTypes.arrayOf(PropTypes.string).isRequired
+    categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+    post: PropTypes.object
   };
 
   state = {
@@ -24,8 +25,34 @@ class NewPost extends Component {
 
     isReadyToSubmit: false,
     isPosting: false,
-    isSaved: false
+    isSaved: false,
+    isEditing: false
   };
+
+  componentDidMount() {
+    if (this.props.post) {
+      this.enableEditingMode();
+    }
+  }
+
+  enableEditingMode() {
+    const { post } = this.props;
+
+    this.setState({
+      post: {
+        id: post.id || "",
+        title: post.title || "",
+        author: post.author || "",
+        body: post.body || "",
+        category: post.category || "",
+        timestamp: post.timestamp || "",
+        commentCount: post.commentCount || 0,
+        voteScore: post.voteScore || 0,
+        deleted: post.deleted || false
+      },
+      isEditing: true
+    });
+  }
 
   bindStateToInput(event, field) {
     event.persist();
@@ -56,6 +83,8 @@ class NewPost extends Component {
 
     this.setState(
       prevState => {
+        if (prevState.isEditing) return;
+
         return {
           post: {
             ...prevState.post,
