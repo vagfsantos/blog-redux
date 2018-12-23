@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import "./App.style.scss";
 import PostListContainer from "../PostList/PostList.container";
 import BaseLayout from "../BaseLayout/BaseLayout.component";
+import NewPostContainer from "../NewPost/NewPost.container";
 
 class App extends Component {
   render() {
@@ -29,6 +30,17 @@ class App extends Component {
               return (
                 <BaseLayout>
                   <PostListContainer category={match.params.category} />
+                </BaseLayout>
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/post/new"
+            render={() => {
+              return (
+                <BaseLayout>
+                  <NewPostContainer />
                 </BaseLayout>
               );
             }}

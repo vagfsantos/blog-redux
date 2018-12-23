@@ -14,7 +14,7 @@ export default () => (
           <div className="buttons">
             <Link to="/post/new" className="button is-success">
               <span className="icon">
-                <i class="fas fa-plus-square" />
+                <i className="fas fa-plus-square" />
               </span>
               <span>Add new post</span>
             </Link>
