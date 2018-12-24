@@ -3,3 +3,9 @@
 main {
   padding-top: 2rem;
 }
+
+.container {
+  @media (max-width: 1088px) {
+    padding: 2rem 20px 0;
+  }
+}

@@ -8,8 +8,6 @@ export default () => (
         <Link to="/" className="navbar-item">
           Readable
         </Link>
-      </div>
-      <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
             <Link to="/post/new" className="button is-success">
