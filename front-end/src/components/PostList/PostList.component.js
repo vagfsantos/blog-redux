@@ -10,9 +10,7 @@ const PostList = ({ postIds, category }) => (
       {category ? category : "All posts"}
     </h2>
     <br />
-    <div>
-      <FiltersContainer />
-    </div>
+    <div>{postIds.length > 0 && <FiltersContainer />}</div>
     <br />
     {postIds.length > 0 ? (
       <ul className="columns is-multiline">
