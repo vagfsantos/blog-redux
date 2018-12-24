@@ -13,3 +13,18 @@ export const saveNewPost = post => {
     body: JSON.stringify(post)
   }).then(response => response.json());
 };
+
+export const editPost = post => {
+  return fetch(`${API_HOST}/posts/${post.id}`, {
+    headers,
+    method: "PUT",
+    body: JSON.stringify(post)
+  }).then(response => response.json());
+};
+
+export const deletePost = id => {
+  return fetch(`${API_HOST}/posts/${id}`, {
+    headers,
+    method: "DELETE"
+  }).then(response => response.json());
+};

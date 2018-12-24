@@ -2,6 +2,7 @@ export const ADD_NEW_POST = "ADD_NEW_POST";
 export const EDIT_POST = "EDIT_POST";
 export const SUCCESSFULLY_SAVED_NEW_POST = "SUCCESSFULLY_SAVED_NEW_POST";
 export const CANCEL_ADDED_NEW_POST = "CANCEL_ADDED_NEW_POST";
+export const DELETE_POST = "DELETE_POST";
 
 export const actionAddNewPost = post => {
   return {
@@ -28,5 +29,12 @@ export const actionSuccessfullySavedNewPost = (id, post) => {
   return {
     type: SUCCESSFULLY_SAVED_NEW_POST,
     payload: { id, post }
+  };
+};
+
+export const actionDeletePost = id => {
+  return {
+    type: DELETE_POST,
+    payload: { id }
   };
 };

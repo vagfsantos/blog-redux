@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { actionAddNewPost, actionEditPost } from "./NewPost.actions";
+import {
+  actionAddNewPost,
+  actionEditPost,
+  actionDeletePost
+} from "./NewPost.actions";
 import NewPost from "./NewPost.component";
 
 class NewPostContainer extends Component {
@@ -11,9 +15,14 @@ class NewPostContainer extends Component {
   };
 
   render() {
-    const { onSavePost, categories, post } = this.props;
+    const { onSavePost, onDeletePost, categories, post } = this.props;
     return (
-      <NewPost onSavePost={onSavePost} categories={categories} post={post} />
+      <NewPost
+        onSavePost={onSavePost}
+        onDeletePost={onDeletePost}
+        categories={categories}
+        post={post}
+      />
     );
   }
 }
@@ -32,6 +41,10 @@ const mapDispatchToProps = dispatch => {
         return dispatch(actionEditPost(post));
       }
       return dispatch(actionAddNewPost(post));
+    },
+
+    onDeletePost(id) {
+      return dispatch(actionDeletePost(id));
     }
   };
 };

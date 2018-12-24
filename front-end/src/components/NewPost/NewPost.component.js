@@ -3,36 +3,57 @@ import PropTypes from "prop-types";
 import uuid from "uuid/v1";
 import { Link, Redirect } from "react-router-dom";
 
+const post = {
+  id: "",
+  title: "",
+  author: "",
+  body: "",
+  category: "",
+  timestamp: "",
+  commentCount: 0,
+  voteScore: 0,
+  deleted: false
+};
+
 class NewPost extends PureComponent {
   static propTypes = {
     onSavePost: PropTypes.func.isRequired,
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onDeletePost: PropTypes.func,
     post: PropTypes.object
   };
 
   state = {
-    post: {
-      id: "",
-      title: "",
-      author: "",
-      body: "",
-      category: "",
-      timestamp: "",
-      commentCount: 0,
-      voteScore: 0,
-      deleted: false
-    },
+    post,
 
     isReadyToSubmit: false,
     isPosting: false,
     isSaved: false,
-    isEditing: false
+    isEditing: false,
+    isDeleting: false,
+    shouldUpdate: true
   };
 
+  componentDidMount() {
+    this.prepareState();
+  }
+
   componentDidUpdate() {
-    if (this.props.post) {
+    this.prepareState();
+  }
+
+  prepareState() {
+    if (this.props.post && this.state.shouldUpdate) {
       this.enableEditingMode();
     }
+
+    if (!this.props.post && !this.state.shouldUpdate) {
+      this.resetState();
+    }
+  }
+
+  resetState() {
+    this.setState({ post, shouldUpdate: true, isEditing: false });
   }
 
   enableEditingMode() {
@@ -40,7 +61,8 @@ class NewPost extends PureComponent {
 
     this.setState({
       post,
-      isEditing: true
+      isEditing: true,
+      shouldUpdate: false
     });
   }
 
@@ -91,9 +113,28 @@ class NewPost extends PureComponent {
     );
   };
 
+  onDeletePost = event => {
+    event.preventDefault();
+    this.setState(
+      prevState => {
+        return {
+          isDeleting: true,
+          post: {
+            ...prevState.post,
+            deleted: true
+          }
+        };
+      },
+      () => {
+        this.props.onDeletePost(this.state.post.id);
+        this.setState({ isDeleting: false, isSaved: true });
+      }
+    );
+  };
+
   render() {
     const { categories } = this.props;
-    const { post, isReadyToSubmit, isPosting, isSaved } = this.state;
+    const { post, isReadyToSubmit, isPosting, isSaved, isEditing } = this.state;
 
     return isSaved ? (
       <Redirect to="/" />
@@ -166,6 +207,17 @@ class NewPost extends PureComponent {
             <Link to="/" className="button is-text">
               Cancel
             </Link>
+          </div>
+          <div className="control">
+            {isEditing && (
+              <button
+                onClick={this.onDeletePost}
+                type="button"
+                className="button is-danger"
+              >
+                {isPosting ? "Loading..." : "Delete"}
+              </button>
+            )}
           </div>
         </div>
       </form>
