@@ -1,7 +1,7 @@
 import { all } from "redux-saga/effects";
 import { watchSetCategories } from "../components/Menu/Menu.saga";
 import { watchGetAllPosts } from "../components/App/App.saga";
-import { watchVote } from "../components/Vote/Vote.saga";
+import { watchVotePost, watchVoteComment } from "../components/Vote/Vote.saga";
 import { watchGetComments } from "../components/CommentList/CommentList.saga";
 import {
   watchAddNewPost,
@@ -16,7 +16,8 @@ export const sagaWatchers = function*() {
     watchAddNewPost(),
     watchEditPost(),
     watchDeletePost(),
-    watchVote(),
+    watchVotePost(),
+    watchVoteComment(),
     watchGetComments()
   ]);
 };

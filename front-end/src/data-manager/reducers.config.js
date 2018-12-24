@@ -5,12 +5,15 @@ import { categoryReducer as categories } from "../components/Menu/Menu.reducer";
 import { FiltersReducer as filters } from "../components/Filters/Filters.reducer";
 import { PostListReducer } from "../components/App/App.reducer";
 import { NewPostReducer } from "../components/NewPost/NewPost.reducer";
-import { VoteReducer } from "../components/Vote/Vote.reducer";
-import { CommentListReducer as comments } from "../components/CommentList/CommentList.reducer";
+import { CommentListReducer } from "../components/CommentList/CommentList.reducer";
+import {
+  VotePostReducer,
+  VoteCommentReducer
+} from "../components/Vote/Vote.reducer";
 
 export const reducerConfig = combineReducers({
   categories,
-  posts: reduceReducers(PostListReducer, NewPostReducer, VoteReducer),
-  comments,
+  posts: reduceReducers(PostListReducer, NewPostReducer, VotePostReducer),
+  comments: reduceReducers(CommentListReducer, VoteCommentReducer),
   filters
 });

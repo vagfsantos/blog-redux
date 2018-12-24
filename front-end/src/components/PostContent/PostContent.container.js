@@ -16,15 +16,8 @@ class PostContentContainer extends Component {
 }
 
 const mapStateToProps = ({ posts }, { postId }) => {
-  let post = posts.find(post => post.id === postId);
-
-  if (!post) {
-    // todo fetcch single post
-    post = {};
-  }
-
   return {
-    post
+    post: posts.find(post => post.id === postId)
   };
 };
 

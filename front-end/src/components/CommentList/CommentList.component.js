@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import VoteContainer from "../Vote/Vote.container";
 import Score from "../Score/Score.component";
+import { VOTE_TYPE } from "../Vote/Vote.enum";
 
 const CommentList = ({ comments }) => (
   <div>
@@ -28,7 +29,7 @@ const CommentList = ({ comments }) => (
         <br />
         <p>{comment.body}</p>
         <br />
-        <VoteContainer />
+        <VoteContainer id={comment.id} type={VOTE_TYPE.COMMENT} />
       </div>
     ))}
   </div>

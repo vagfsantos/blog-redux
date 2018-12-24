@@ -3,6 +3,7 @@ import React from "react";
 import PostMetaData from "../PostMetaData/PostMetaData.component";
 import VoteContainer from "../Vote/Vote.container";
 import Score from "../Score/Score.component";
+import { VOTE_TYPE } from "../Vote/Vote.enum";
 
 const PostContent = ({ post }) => (
   <article className="box">
@@ -24,7 +25,7 @@ const PostContent = ({ post }) => (
 
     <footer>
       <h3 className="title is-5">Let your vote</h3>
-      <VoteContainer postId={post.id} />
+      <VoteContainer id={post.id} type={VOTE_TYPE.POST} />
     </footer>
   </article>
 );

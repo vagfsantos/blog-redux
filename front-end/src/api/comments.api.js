@@ -5,3 +5,11 @@ export const fetchAllComments = postId => {
     response => response.json()
   );
 };
+
+export const commentVote = (id, vote) => {
+  return fetch(`${API_HOST}/comments/${id}`, {
+    headers,
+    method: "POST",
+    body: JSON.stringify({ option: vote })
+  }).then(response => response.json());
+};

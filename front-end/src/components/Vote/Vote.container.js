@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { actionVote } from "./Vote.actions";
+import { actionVotePost, actionVoteComment } from "./Vote.actions";
+import { VOTE_TYPE, VOTE } from "./Vote.enum";
 import Vote from "./Vote.component";
 
 class VoteContainer extends Component {
   static propTypes = {
-    postId: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    onThumbsUp: PropTypes.func.isRequired,
+    onThumbsDown: PropTypes.func.isRequired
   };
 
   render() {
@@ -17,14 +20,28 @@ class VoteContainer extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+export const mapDispatchToProps = (dispatch, { id, type }) => {
+  const { POST, COMMENT } = VOTE_TYPE;
+
   return {
     onThumbsUp() {
-      return dispatch(actionVote(ownProps.postId, "upVote"));
+      if (type === POST) {
+        return dispatch(actionVotePost(id, VOTE.UP));
+      }
+
+      if (type === COMMENT) {
+        return dispatch(actionVoteComment(id, VOTE.UP));
+      }
     },
 
     onThumbsDown() {
-      return dispatch(actionVote(ownProps.postId, "downVote"));
+      if (type === POST) {
+        return dispatch(actionVotePost(id, VOTE.DOWN));
+      }
+
+      if (type === COMMENT) {
+        return dispatch(actionVoteComment(id, VOTE.DOWN));
+      }
     }
   };
 };

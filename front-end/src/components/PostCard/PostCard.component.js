@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import PostMetaData from "../PostMetaData/PostMetaData.component";
 import Score from "../Score/Score.component";
 import VoteContainer from "../Vote/Vote.container";
+import { VOTE_TYPE } from "../Vote/Vote.enum";
 
 const PostCard = ({ post }) => {
   return (
@@ -33,7 +34,7 @@ const PostCard = ({ post }) => {
           <Score voteScore={post.voteScore} commentCount={post.commentCount} />
         </div>
         <div className="column is-2">
-          <VoteContainer postId={post.id} />
+          <VoteContainer id={post.id} type={VOTE_TYPE.POST} />
         </div>
       </footer>
     </div>
