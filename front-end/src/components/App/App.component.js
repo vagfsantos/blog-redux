@@ -6,6 +6,7 @@ import PostListContainer from "../PostList/PostList.container";
 import BaseLayout from "../BaseLayout/BaseLayout.component";
 import NewPostContainer from "../NewPost/NewPost.container";
 import PostContentContainer from "../PostContent/PostContent.container";
+import CommentListContainer from "../CommentList/CommentList.container";
 
 class App extends Component {
   render() {
@@ -63,6 +64,7 @@ class App extends Component {
               return (
                 <BaseLayout>
                   <PostContentContainer postId={match.params.id} />
+                  <CommentListContainer postId={match.params.id} />
                 </BaseLayout>
               );
             }}
