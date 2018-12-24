@@ -28,3 +28,11 @@ export const deletePost = id => {
     method: "DELETE"
   }).then(response => response.json());
 };
+
+export const postVote = (id, vote) => {
+  return fetch(`${API_HOST}/posts/${id}`, {
+    headers,
+    method: "POST",
+    body: JSON.stringify({ option: vote })
+  }).then(response => response.json());
+};

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import { actionVote } from "./Vote.actions";
 import Vote from "./Vote.component";
 
 class VoteContainer extends Component {
@@ -10,17 +11,21 @@ class VoteContainer extends Component {
   };
 
   render() {
-    const { onThumbsDown, onThumbsUp, postId } = this.props;
+    const { onThumbsDown, onThumbsUp } = this.props;
 
     return <Vote onThumbsDown={onThumbsDown} onThumbsUp={onThumbsUp} />;
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onThumbsUp(id) {},
+    onThumbsUp() {
+      return dispatch(actionVote(ownProps.postId, "upVote"));
+    },
 
-    onThumbsDown(id) {}
+    onThumbsDown() {
+      return dispatch(actionVote(ownProps.postId, "downVote"));
+    }
   };
 };
 

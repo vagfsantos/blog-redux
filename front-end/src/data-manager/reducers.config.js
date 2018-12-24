@@ -5,9 +5,10 @@ import { categoryReducer as categories } from "../components/Menu/Menu.reducer";
 import { FiltersReducer as filters } from "../components/Filters/Filters.reducer";
 import { PostListReducer } from "../components/App/App.reducer";
 import { NewPostReducer } from "../components/NewPost/NewPost.reducer";
+import { VoteReducer } from "../components/Vote/Vote.reducer";
 
 export const reducerConfig = combineReducers({
   categories,
-  posts: reduceReducers(PostListReducer, NewPostReducer),
+  posts: reduceReducers(PostListReducer, NewPostReducer, VoteReducer),
   filters
 });
