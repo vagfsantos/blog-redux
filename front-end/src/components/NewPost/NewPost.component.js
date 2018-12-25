@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import uuid from "uuid/v1";
 import { Link, Redirect } from "react-router-dom";
 
+import InputText from "../InputText/InputText.component";
+
 const post = {
   id: "",
   title: "",
@@ -140,30 +142,20 @@ class NewPost extends PureComponent {
       <Redirect to="/" />
     ) : (
       <form onSubmit={this.onSubmitForm}>
-        <div className="field">
-          <label className="label">Title</label>
-          <div className="control">
-            <input
-              onChange={e => this.bindStateToInput(e, "title")}
-              className="input"
-              type="text"
-              placeholder="Post title"
-              value={post.title}
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Author</label>
-          <div className="control">
-            <input
-              onChange={e => this.bindStateToInput(e, "author")}
-              className="input"
-              type="text"
-              placeholder="Your name"
-              value={post.author}
-            />
-          </div>
-        </div>
+        <InputText
+          label="Title"
+          type="text"
+          placeholder="Post title"
+          value={post.title}
+          onChange={e => this.bindStateToInput(e, "title")}
+        />
+        <InputText
+          label="Author"
+          type="text"
+          placeholder="Your name"
+          value={post.author}
+          onChange={e => this.bindStateToInput(e, "author")}
+        />
         <div className="field">
           <label className="label">Subject</label>
           <div className="control">
@@ -182,17 +174,14 @@ class NewPost extends PureComponent {
             </div>
           </div>
         </div>
-        <div className="field">
-          <label className="label">Article</label>
-          <div className="control">
-            <textarea
-              onChange={e => this.bindStateToInput(e, "body")}
-              className="textarea"
-              placeholder="Write your post here..."
-              value={post.body}
-            />
-          </div>
-        </div>
+        <InputText
+          label="Content"
+          type="textarea"
+          onChange={e => this.bindStateToInput(e, "body")}
+          className="textarea"
+          placeholder="Write your post here..."
+          value={post.body}
+        />
         <div className="field is-grouped">
           <div className="control">
             <button
