@@ -7,6 +7,7 @@ import BaseLayout from "../BaseLayout/BaseLayout.component";
 import NewPostContainer from "../NewPost/NewPost.container";
 import PostContentContainer from "../PostContent/PostContent.container";
 import CommentListContainer from "../CommentList/CommentList.container";
+import CommentForm from "../CommentForm/CommentForm.component";
 
 class App extends Component {
   render() {
@@ -65,6 +66,17 @@ class App extends Component {
                 <BaseLayout>
                   <PostContentContainer postId={match.params.id} />
                   <CommentListContainer postId={match.params.id} />
+                </BaseLayout>
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/:category/post/:id/comment"
+            render={({ match }) => {
+              return (
+                <BaseLayout>
+                  <CommentForm />
                 </BaseLayout>
               );
             }}
