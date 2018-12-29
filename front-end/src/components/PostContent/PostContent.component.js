@@ -30,10 +30,7 @@ const PostContent = ({ post = {} }) => (
 
       <br />
 
-      <Link
-        className="button is-dark"
-        to={`/${post.category}/post/${post.id}/comment`}
-      >
+      <Link className="button is-dark" to={`/post/${post.id}/comment`}>
         Comment
       </Link>
     </footer>

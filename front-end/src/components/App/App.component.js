@@ -72,11 +72,25 @@ class App extends Component {
           />
           <Route
             exact
-            path="/:category/post/:id/comment"
+            path="/post/:id/comment"
             render={({ match }) => {
               return (
                 <BaseLayout>
                   <CommentFormContainer parentId={match.params.id} />
+                </BaseLayout>
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/post/:id/comment/:commentId"
+            render={({ match }) => {
+              return (
+                <BaseLayout>
+                  <CommentFormContainer
+                    parentId={match.params.id}
+                    id={match.params.commentId}
+                  />
                 </BaseLayout>
               );
             }}

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import VoteContainer from "../Vote/Vote.container";
 import Score from "../Score/Score.component";
@@ -18,12 +19,15 @@ const CommentList = ({ comments }) => (
           <br />
           <span>by </span>
           <strong className="title is-5">{comment.author} </strong>
-          <a className="has-text-danger">
+          <Link
+            to={`/post/${comment.parentId}/comment/${comment.id}`}
+            className="has-text-danger"
+          >
             <span class="icon is-small">
               <i class="fas fa-edit" />
             </span>
             edit
-          </a>
+          </Link>
         </span>
         <Score voteScore={comment.voteScore} />
         <br />
