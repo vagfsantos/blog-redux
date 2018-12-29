@@ -12,7 +12,7 @@ class FiltersContainer extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   filterPostsBy: (filterBy, filter) => {
     if (filterBy === FILTER_TYPES.DATE) {
       return dispatch(actionFilterByDate(filter));
