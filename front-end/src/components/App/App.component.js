@@ -7,7 +7,7 @@ import BaseLayout from "../BaseLayout/BaseLayout.component";
 import NewPostContainer from "../NewPost/NewPost.container";
 import PostContentContainer from "../PostContent/PostContent.container";
 import CommentListContainer from "../CommentList/CommentList.container";
-import CommentForm from "../CommentForm/CommentForm.component";
+import CommentFormContainer from "../CommentForm/CommentForm.container";
 
 class App extends Component {
   render() {
@@ -76,7 +76,7 @@ class App extends Component {
             render={({ match }) => {
               return (
                 <BaseLayout>
-                  <CommentForm />
+                  <CommentFormContainer parentId={match.params.id} />
                 </BaseLayout>
               );
             }}

@@ -13,3 +13,11 @@ export const commentVote = (id, vote) => {
     body: JSON.stringify({ option: vote })
   }).then(response => response.json());
 };
+
+export const addComments = comment => {
+  return fetch(`${API_HOST}/comments`, {
+    headers,
+    method: "POST",
+    body: JSON.stringify(comment)
+  }).then(response => response.json());
+};

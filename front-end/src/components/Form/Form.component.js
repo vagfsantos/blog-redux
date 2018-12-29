@@ -19,20 +19,20 @@ class Form extends PureComponent {
     shouldUpdate: true
   };
 
-  onSubmit = event => {
-    event.prenventDefault();
+  handleSubmit = event => {
+    event.preventDefault();
     this.setState({ isPosting: true });
     this.props.onSubmit(this.state.formData);
     this.setState({ isPosting: false, isSaved: true });
   };
 
-  onDelete = () => {
+  handleDelete = () => {
     this.setState({ isDeleting: true });
     this.props.onDelete();
     this.setState({ isDeleting: false, isSaved: true });
   };
 
-  bindStateToInput = (event, field) => {
+  handleInput = (event, field) => {
     event.persist();
 
     this.setState(prevState => {
@@ -65,8 +65,8 @@ class Form extends PureComponent {
     return isSaved ? (
       <Redirect to="/" />
     ) : (
-      <form onSubmit={this.onSubmit}>
-        {children(this.state.formData, this.bindStateToInput)}
+      <form onSubmit={this.handleSubmit}>
+        {children(this.state.formData, this.handleInput)}
         <br />
 
         <footer className="field is-grouped">
@@ -87,7 +87,7 @@ class Form extends PureComponent {
           <div className="control">
             {isEditing && (
               <button
-                onClick={this.onDelete}
+                onClick={this.handleDelete}
                 type="button"
                 className="button is-danger"
               >
