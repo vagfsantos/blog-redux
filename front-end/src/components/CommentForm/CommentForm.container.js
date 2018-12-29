@@ -10,7 +10,7 @@ import {
 } from "./CommentForm.actions";
 import { actionGetComments } from "../CommentList/CommentList.actions";
 
-class CommentFormContainer extends Component {
+export class CommentFormContainer extends Component {
   static propTypes = {
     id: PropTypes.string,
     parentId: PropTypes.string.isRequired
@@ -39,13 +39,13 @@ class CommentFormContainer extends Component {
   }
 }
 
-const mapStateToPros = ({ comments }, { id }) => {
+export const mapStateToPros = ({ comments }, { id }) => {
   return {
     comment: comments.find(comment => comment.id === id)
   };
 };
 
-const mapDispatchToProps = (dispatch, { parentId }) => {
+export const mapDispatchToProps = (dispatch, { parentId }) => {
   return {
     onSaveNewComment(comment) {
       dispatch(actionAddComment({ ...comment, parentId, voteScore: 1 }));
