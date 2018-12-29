@@ -11,7 +11,11 @@ const CommentList = ({ comments }) => (
     <h1 className="title is-4">Comments</h1>
     {comments.length > 0 ? (
       comments.map(comment => (
-        <div key={comment.id} className="notification is-light">
+        <div
+          key={comment.id}
+          className="notification is-light"
+          data-test="list-item"
+        >
           <span className="is-size-7">
             <span>commented on </span>
             <span>
@@ -38,7 +42,7 @@ const CommentList = ({ comments }) => (
         </div>
       ))
     ) : (
-      <div className="notification is-dark">
+      <div className="notification is-dark" data-test="no-comments-found">
         <b>No comments here! =(</b>
       </div>
     )}

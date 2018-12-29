@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { actionGetComments } from "./CommentList.actions";
 import CommentList from "./CommentList.component";
 
-class CommentListContainer extends Component {
+export class CommentListContainer extends Component {
   static propTypes = {
     postId: PropTypes.string.isRequired
   };
@@ -21,7 +21,7 @@ class CommentListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ comments = [] }, { postId }) => {
+export const mapStateToProps = ({ comments = [] }, { postId }) => {
   return {
     comments: comments.filter(
       comment => comment.parentId === postId && comment.deleted === false
