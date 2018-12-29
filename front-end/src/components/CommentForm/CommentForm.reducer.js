@@ -1,9 +1,19 @@
-import { ADD_COMMENT } from "./CommentForm.actions";
+import { ADD_COMMENT, UPDATE_COMMENT } from "./CommentForm.actions";
 
 export const CommentFormReducer = (state = [], action) => {
   switch (action.type) {
     case ADD_COMMENT:
       return state.concat(action.payload.comment);
+
+    case UPDATE_COMMENT:
+      return state.map(comment => {
+        if (comment.id === action.payload.comment.id) {
+          return action.payload.comment;
+        }
+
+        return comment;
+      });
+
     default:
       return state;
   }

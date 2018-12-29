@@ -25,11 +25,15 @@ const InputText = ({ label, placeholder, onChange, value, type }) => (
   </div>
 );
 
+InputText.defaultProps = {
+  value: ""
+};
+
 InputText.propTypes = {
   type: PropTypes.string,
+  value: PropTypes.string,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
 };
 

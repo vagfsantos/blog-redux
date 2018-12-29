@@ -21,3 +21,11 @@ export const addComments = comment => {
     body: JSON.stringify(comment)
   }).then(response => response.json());
 };
+
+export const updateComment = comment => {
+  return fetch(`${API_HOST}/comments/${comment.id}`, {
+    headers,
+    method: "PUT",
+    body: JSON.stringify(comment)
+  }).then(response => response.json());
+};

@@ -3,7 +3,10 @@ import { watchSetCategories } from "../components/Menu/Menu.saga";
 import { watchGetAllPosts } from "../components/App/App.saga";
 import { watchVotePost, watchVoteComment } from "../components/Vote/Vote.saga";
 import { watchGetComments } from "../components/CommentList/CommentList.saga";
-import { watchAddComments } from "../components/CommentForm/CommentForm.saga";
+import {
+  watchAddComments,
+  watchUpdateComment
+} from "../components/CommentForm/CommentForm.saga";
 import {
   watchAddNewPost,
   watchEditPost,

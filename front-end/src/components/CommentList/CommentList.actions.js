@@ -11,6 +11,6 @@ export const actionGetComments = postId => {
 export const actionSetComments = comments => {
   return {
     type: SET_COMMENTS,
-    payload: comments
+    payload: { comments }
   };
 };

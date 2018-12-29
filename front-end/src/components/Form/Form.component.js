@@ -6,18 +6,28 @@ class Form extends PureComponent {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    requiredFields: PropTypes.arrayOf(PropTypes.string)
+    requiredFields: PropTypes.arrayOf(PropTypes.string),
+    isEditing: PropTypes.bool.isRequired,
+    defaultData: PropTypes.object
   };
 
   state = {
     formData: {},
     isReadyToSubmit: false,
     isPosting: false,
-    isEditing: false,
     isSaved: false,
     isDeleting: false,
     shouldUpdate: true
   };
+
+  componentDidUpdate() {
+    if (this.state.shouldUpdate) {
+      this.setState({
+        formData: this.props.defaultData || {},
+        shouldUpdate: false
+      });
+    }
+  }
 
   handleSubmit = event => {
     event.preventDefault();
@@ -59,8 +69,8 @@ class Form extends PureComponent {
   }
 
   render() {
-    const { children } = this.props;
-    const { isReadyToSubmit, isPosting, isSaved, isEditing } = this.state;
+    const { children, isEditing } = this.props;
+    const { isReadyToSubmit, isPosting, isSaved } = this.state;
 
     return isSaved ? (
       <Redirect to="/" />

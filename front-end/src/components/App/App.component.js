@@ -88,8 +88,8 @@ class App extends Component {
               return (
                 <BaseLayout>
                   <CommentFormContainer
-                    parentId={match.params.id}
                     id={match.params.commentId}
+                    parentId={match.params.id}
                   />
                 </BaseLayout>
               );

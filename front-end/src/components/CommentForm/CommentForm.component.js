@@ -7,23 +7,46 @@ import InputText from "../InputText/InputText.component";
 
 class CommentForm extends Component {
   static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired
+    onSaveNewComment: PropTypes.func.isRequired,
+    onUpdateComment: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    comment: PropTypes.shape({
+      author: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired,
+      deleted: PropTypes.bool.isRequired,
+      id: PropTypes.string.isRequired,
+      parentDeleted: PropTypes.bool.isRequired,
+      parentId: PropTypes.string.isRequired,
+      timestamp: PropTypes.number.isRequired,
+      voteScore: PropTypes.number.isRequired
+    })
   };
 
   handleSubmit = formData => {
-    this.props.onSubmit({
-      ...formData,
-      id: uuid(),
-      timestamp: new Date().getTime()
-    });
+    const { comment } = this.props;
+
+    comment
+      ? this.props.onUpdateComment({
+          timestamp: new Date().getTime(),
+          ...comment,
+          ...formData
+        })
+      : this.props.onSaveNewComment({
+          ...formData,
+          id: uuid(),
+          timestamp: new Date().getTime()
+        });
   };
 
   render() {
+    const isEditing = !!this.props.comment;
+
     return (
       <Form
         onSubmit={this.handleSubmit}
         onDelete={this.handleDelete}
+        isEditing={isEditing}
+        defaultData={this.props.comment}
         requiredFields={["author", "body"]}
       >
         {(formData, setFormDataState) => (
