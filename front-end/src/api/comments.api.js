@@ -29,3 +29,10 @@ export const updateComment = comment => {
     body: JSON.stringify(comment)
   }).then(response => response.json());
 };
+
+export const deleteComment = id => {
+  return fetch(`${API_HOST}/comments/${id}`, {
+    headers,
+    method: "DELETE"
+  }).then(response => response.json());
+};

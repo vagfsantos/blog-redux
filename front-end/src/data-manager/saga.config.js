@@ -5,7 +5,8 @@ import { watchVotePost, watchVoteComment } from "../components/Vote/Vote.saga";
 import { watchGetComments } from "../components/CommentList/CommentList.saga";
 import {
   watchAddComments,
-  watchUpdateComment
+  watchUpdateComment,
+  watchDeleteComment
 } from "../components/CommentForm/CommentForm.saga";
 import {
   watchAddNewPost,
@@ -23,6 +24,8 @@ export const sagaWatchers = function*() {
     watchVotePost(),
     watchVoteComment(),
     watchGetComments(),
-    watchAddComments()
+    watchAddComments(),
+    watchUpdateComment(),
+    watchDeleteComment()
   ]);
 };

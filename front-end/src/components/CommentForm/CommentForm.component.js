@@ -9,7 +9,7 @@ class CommentForm extends Component {
   static propTypes = {
     onSaveNewComment: PropTypes.func.isRequired,
     onUpdateComment: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
+    onDeleteComment: PropTypes.func.isRequired,
     comment: PropTypes.shape({
       author: PropTypes.string.isRequired,
       body: PropTypes.string.isRequired,
@@ -23,19 +23,25 @@ class CommentForm extends Component {
   };
 
   handleSubmit = formData => {
-    const { comment } = this.props;
+    const { comment, onUpdateComment, onSaveNewComment } = this.props;
 
     comment
-      ? this.props.onUpdateComment({
+      ? onUpdateComment({
           timestamp: new Date().getTime(),
           ...comment,
           ...formData
         })
-      : this.props.onSaveNewComment({
+      : onSaveNewComment({
           ...formData,
           id: uuid(),
           timestamp: new Date().getTime()
         });
+  };
+
+  handleDelete = () => {
+    const { comment, onDeleteComment } = this.props;
+
+    onDeleteComment(comment.id);
   };
 
   render() {

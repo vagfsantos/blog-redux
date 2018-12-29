@@ -11,11 +11,8 @@ class CommentListContainer extends Component {
   };
 
   componentDidMount() {
-    const { comments } = this.props;
-
-    if (!comments.length) {
-      this.props.dispatch(actionGetComments(this.props.postId));
-    }
+    const { comments, dispatch } = this.props;
+    dispatch(actionGetComments(this.props.postId));
   }
 
   render() {
@@ -26,7 +23,9 @@ class CommentListContainer extends Component {
 
 const mapStateToProps = ({ comments = [] }, { postId }) => {
   return {
-    comments: comments.filter(comment => comment.parentId === postId)
+    comments: comments.filter(
+      comment => comment.parentId === postId && comment.deleted === false
+    )
   };
 };
 

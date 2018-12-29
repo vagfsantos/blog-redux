@@ -9,33 +9,39 @@ import { VOTE_TYPE } from "../Vote/Vote.enum";
 const CommentList = ({ comments }) => (
   <div>
     <h1 className="title is-4">Comments</h1>
-    {comments.map(comment => (
-      <div className="notification is-light">
-        <button class="delete" />
-
-        <span className="is-size-7">
-          <span>commented on </span>
-          <span>{new Date(comment.timestamp).toLocaleDateString("en-US")}</span>
-          <br />
-          <span>by </span>
-          <strong className="title is-5">{comment.author} </strong>
-          <Link
-            to={`/post/${comment.parentId}/comment/${comment.id}`}
-            className="has-text-danger"
-          >
-            <span class="icon is-small">
-              <i class="fas fa-edit" />
+    {comments.length > 0 ? (
+      comments.map(comment => (
+        <div className="notification is-light">
+          <span className="is-size-7">
+            <span>commented on </span>
+            <span>
+              {new Date(comment.timestamp).toLocaleDateString("en-US")}
             </span>
-            edit
-          </Link>
-        </span>
-        <Score voteScore={comment.voteScore} />
-        <br />
-        <p>{comment.body}</p>
-        <br />
-        <VoteContainer id={comment.id} type={VOTE_TYPE.COMMENT} />
+            <br />
+            <span>by </span>
+            <strong className="title is-5">{comment.author} </strong>
+            <Link
+              to={`/post/${comment.parentId}/comment/${comment.id}`}
+              className="has-text-danger"
+            >
+              <span class="icon is-small">
+                <i class="fas fa-edit" />
+              </span>
+              edit
+            </Link>
+          </span>
+          <Score voteScore={comment.voteScore} />
+          <br />
+          <p>{comment.body}</p>
+          <br />
+          <VoteContainer id={comment.id} type={VOTE_TYPE.COMMENT} />
+        </div>
+      ))
+    ) : (
+      <div className="notification is-dark">
+        <b>No comments here! =(</b>
       </div>
-    ))}
+    )}
   </div>
 );
 

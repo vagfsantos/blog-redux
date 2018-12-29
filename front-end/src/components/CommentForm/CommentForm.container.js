@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import CommentForm from "./CommentForm.component";
-import { actionAddComment, actionUpdateComment } from "./CommentForm.actions";
+import {
+  actionAddComment,
+  actionUpdateComment,
+  actionDeleteComment
+} from "./CommentForm.actions";
 import { actionGetComments } from "../CommentList/CommentList.actions";
 
 class CommentFormContainer extends Component {
@@ -17,11 +21,19 @@ class CommentFormContainer extends Component {
   }
 
   render() {
+    const {
+      onSaveNewComment,
+      onUpdateComment,
+      onDeleteComment,
+      comment
+    } = this.props;
+
     return (
       <CommentForm
-        onSaveNewComment={this.props.onSaveNewComment}
-        onUpdateComment={this.props.onUpdateComment}
-        comment={this.props.comment}
+        onSaveNewComment={onSaveNewComment}
+        onUpdateComment={onUpdateComment}
+        onDeleteComment={onDeleteComment}
+        comment={comment}
       />
     );
   }
@@ -47,7 +59,9 @@ const mapDispatchToProps = (dispatch, { parentId }) => {
       dispatch(actionGetComments(id));
     },
 
-    onDelete(comment) {}
+    onDeleteComment(id) {
+      dispatch(actionDeleteComment({ id, parentId }));
+    }
   };
 };
 
