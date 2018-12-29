@@ -26,8 +26,8 @@ const Score = ({ voteScore, commentCount }) => (
 );
 
 Score.propTypes = {
-  voteScore: PropTypes.number.isRequired,
-  commentCount: PropTypes.number.isRequired
+  commentCount: PropTypes.number,
+  voteScore: PropTypes.number
 };
 
 export default Score;

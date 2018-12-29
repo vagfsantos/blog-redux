@@ -1,4 +1,4 @@
-import { put, takeLatest, call } from "redux-saga/effects";
+import { takeLatest, call } from "redux-saga/effects";
 
 import {
   addComments,

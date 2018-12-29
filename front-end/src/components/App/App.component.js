@@ -64,8 +64,10 @@ class App extends Component {
             render={({ match }) => {
               return (
                 <BaseLayout>
-                  <PostContentContainer postId={match.params.id} />
-                  <CommentListContainer postId={match.params.id} />
+                  <div>
+                    <PostContentContainer postId={match.params.id} />
+                    <CommentListContainer postId={match.params.id} />
+                  </div>
                 </BaseLayout>
               );
             }}

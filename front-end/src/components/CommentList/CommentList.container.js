@@ -11,7 +11,7 @@ class CommentListContainer extends Component {
   };
 
   componentDidMount() {
-    const { comments, dispatch } = this.props;
+    const { dispatch } = this.props;
     dispatch(actionGetComments(this.props.postId));
   }
 

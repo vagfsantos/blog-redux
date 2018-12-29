@@ -27,9 +27,9 @@ const PostMetaData = ({ timestamp, author, postId }) => {
 };
 
 PostMetaData.propTypes = {
-  timestamp: PropTypes.number.isRequired,
-  author: PropTypes.string.isRequired,
-  postId: PropTypes.string.isRequired
+  timestamp: PropTypes.number,
+  author: PropTypes.string,
+  postId: PropTypes.string
 };
 
 export default PostMetaData;

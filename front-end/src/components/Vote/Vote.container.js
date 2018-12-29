@@ -8,7 +8,7 @@ import Vote from "./Vote.component";
 
 class VoteContainer extends Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     onThumbsUp: PropTypes.func.isRequired,
     onThumbsDown: PropTypes.func.isRequired
   };

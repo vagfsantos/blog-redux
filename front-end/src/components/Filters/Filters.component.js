@@ -44,13 +44,13 @@ class Filters extends Component {
       <div>
         <div className="is-pulled-right">
           Filter
-          <a onClick={event => this.handleToggle(event, VOTES)}>
+          <a href="/" onClick={event => this.handleToggle(event, VOTES)}>
             <span className="icon is-large">
               <i className={`fas fa-lg ${voteIcon}`} />
             </span>
             by vote
           </a>
-          <a onClick={event => this.handleToggle(event, DATE)}>
+          <a href="/" onClick={event => this.handleToggle(event, DATE)}>
             <span className="icon is-large">
               <i className={`fas fa-lg ${dateIcon}`} />
             </span>

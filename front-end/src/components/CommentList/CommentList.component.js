@@ -11,7 +11,7 @@ const CommentList = ({ comments }) => (
     <h1 className="title is-4">Comments</h1>
     {comments.length > 0 ? (
       comments.map(comment => (
-        <div className="notification is-light">
+        <div key={comment.id} className="notification is-light">
           <span className="is-size-7">
             <span>commented on </span>
             <span>
@@ -24,8 +24,8 @@ const CommentList = ({ comments }) => (
               to={`/post/${comment.parentId}/comment/${comment.id}`}
               className="has-text-danger"
             >
-              <span class="icon is-small">
-                <i class="fas fa-edit" />
+              <span className="icon is-small">
+                <i className="fas fa-edit" />
               </span>
               edit
             </Link>
