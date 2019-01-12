@@ -13,91 +13,53 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => {
-              return (
-                <BaseLayout>
-                  <PostListContainer />
-                </BaseLayout>
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/:category"
-            render={({ match }) => {
-              return (
-                <BaseLayout>
-                  <PostListContainer category={match.params.category} />
-                </BaseLayout>
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/post/new"
-            render={() => {
-              return (
-                <BaseLayout>
-                  <NewPostContainer />
-                </BaseLayout>
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/post/new/:id"
-            render={({ match }) => {
-              return (
-                <BaseLayout>
-                  <NewPostContainer postId={match.params.id} />
-                </BaseLayout>
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/:category/post/:id"
-            render={({ match }) => {
-              return (
-                <BaseLayout>
-                  <div>
-                    <PostContentContainer postId={match.params.id} />
-                    <CommentListContainer postId={match.params.id} />
-                  </div>
-                </BaseLayout>
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/post/:id/comment"
-            render={({ match }) => {
-              return (
-                <BaseLayout>
-                  <CommentFormContainer parentId={match.params.id} />
-                </BaseLayout>
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/post/:id/comment/:commentId"
-            render={({ match }) => {
-              return (
-                <BaseLayout>
-                  <CommentFormContainer
-                    id={match.params.commentId}
-                    parentId={match.params.id}
-                  />
-                </BaseLayout>
-              );
-            }}
-          />
-        </Switch>
+        <BaseLayout>
+          <Switch>
+            <Route exact path="/" component={PostListContainer} />
+            <Route
+              exact
+              path="/:category"
+              render={({ match }) => (
+                <PostListContainer category={match.params.category} />
+              )}
+            />
+            <Route exact path="/post/new" component={NewPostContainer} />
+            <Route
+              exact
+              path="/post/new/:id"
+              render={({ match }) => (
+                <NewPostContainer postId={match.params.id} />
+              )}
+            />
+            <Route
+              exact
+              path="/:category/:postId"
+              render={({ match }) => (
+                <div>
+                  <PostContentContainer postId={match.params.postId} />
+                  <CommentListContainer postId={match.params.postId} />
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/post/:id/comment"
+              render={({ match }) => (
+                <CommentFormContainer parentId={match.params.id} />
+              )}
+            />
+            <Route
+              exact
+              path="/post/:id/comment/:commentId"
+              render={({ match }) => (
+                <CommentFormContainer
+                  id={match.params.commentId}
+                  parentId={match.params.id}
+                />
+              )}
+            />
+          </Switch>
+        </BaseLayout>
       </BrowserRouter>
     );
   }
