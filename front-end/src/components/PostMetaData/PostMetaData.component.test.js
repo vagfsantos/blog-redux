@@ -17,7 +17,7 @@ describe("<PostMetaData />", () => {
       />
     );
 
-    const dateRegExp = /\d{2}\/\d{2}\/\d{4}/gim;
+    const dateRegExp = /\d\d?\/\d{2}\/\d{4}/gim;
     const date = component.find("[data-test='time']").text();
 
     expect(date).toMatch(dateRegExp);
