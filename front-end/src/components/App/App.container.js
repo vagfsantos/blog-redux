@@ -6,7 +6,7 @@ import App from "./App.component";
 
 class AppContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(actionFetchAllPosts());
+    this.props.fetchAllPosts();
   }
 
   render() {
@@ -14,4 +14,13 @@ class AppContainer extends Component {
   }
 }
 
-export default connect()(AppContainer);
+const mapDispatchToProps = dispatch => ({
+  fetchAllPosts() {
+    dispatch(actionFetchAllPosts());
+  }
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AppContainer);
