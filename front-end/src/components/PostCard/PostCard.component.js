@@ -14,7 +14,7 @@ const PostCard = ({ post }) => {
         <div className="column is-9">
           <h2 className="title is-4">{post.title}</h2>
           <span className="tag is-warning">{post.category}</span>{" "}
-          <Link to={`/${post.category}/post/${post.id}`}>
+          <Link to={`/${post.category}/${post.id}`}>
             <span className="icon">
               <i className="fas fa-book-reader" />
             </span>

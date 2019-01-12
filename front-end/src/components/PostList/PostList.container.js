@@ -22,7 +22,7 @@ export const mapStateToProps = ({ posts, filters }, { category }) => {
   let sortedPosts = postsToBeRendered;
 
   if (filters[VOTES]) {
-    sortedPosts = postsToBeRendered.sort((a, b) => {
+    sortedPosts = [...postsToBeRendered].sort((a, b) => {
       if (filters[VOTES] === DESC) {
         return b.voteScore - a.voteScore;
       }
@@ -31,7 +31,7 @@ export const mapStateToProps = ({ posts, filters }, { category }) => {
   }
 
   if (filters[DATE]) {
-    sortedPosts = postsToBeRendered.sort((a, b) => {
+    sortedPosts = [...postsToBeRendered].sort((a, b) => {
       if (filters[DATE] === DESC) {
         return b.timestamp - a.timestamp;
       }
