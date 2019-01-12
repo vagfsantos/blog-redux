@@ -8,7 +8,7 @@ import { VOTE_TYPE } from "../Vote/Vote.enum";
 
 const PostContent = ({ post }) =>
   post ? (
-    <article className="box">
+    <article className="box" data-test="post">
       <header>
         <h1 className="has-text-link title is-3">{post.title}</h1>
         <PostMetaData
@@ -38,7 +38,9 @@ const PostContent = ({ post }) =>
     </article>
   ) : (
     <div className="box">
-      <h1 className="has-text-link title is-3">Post not found</h1>
+      <h1 className="has-text-link title is-3" data-test="post-not-found">
+        Post not found
+      </h1>
     </div>
   );
 

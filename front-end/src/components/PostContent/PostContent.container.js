@@ -15,7 +15,7 @@ class PostContentContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ posts }, { postId }) => {
+export const mapStateToProps = ({ posts }, { postId }) => {
   return {
     post: posts.find(post => post.id === postId)
   };
