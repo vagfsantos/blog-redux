@@ -15,7 +15,7 @@ PostCardContainer.propTypes = {
   id: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   return {
     post: state.posts.find(({ id }) => id === ownProps.id)
   };
