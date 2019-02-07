@@ -1,4 +1,5 @@
 # Blog with react and redux
+An academic project built with React, Saga and Redux. It is about a blog where you can create, update and delete posts and comments.
 
 ## Install dependencies
 
